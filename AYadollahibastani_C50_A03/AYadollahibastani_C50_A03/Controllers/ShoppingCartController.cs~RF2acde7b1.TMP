@@ -1,0 +1,95 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace AYadollahibastani_C50_A03.Controllers
+{
+    public class ShoppingCartController : Controller
+    {
+        // GET: ShoppingCart
+        public ActionResult Index()
+        {
+            return View(Models.ShoppingCartList.Instance.GetList());
+        }
+
+        // GET: ShoppingCart/Details/5
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
+
+        // GET: ShoppingCart/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        // POST: ShoppingCart/Create
+        [HttpPost]
+        public ActionResult Create(FormCollection collection)
+        {
+            try
+            {
+                Models.Product product = new Models.Product();
+                product.Id = Models.ShoppingCartList.Instance.GetList().Max().Id + 1 ;
+                product.Price = Convert.ToDouble(collection.GetValue("Price")); 
+                product.Quantity = Convert.ToInt16(collection.GetValue("Quantity"));
+                // TODO: Add insert logic here
+                Models.ShoppingCartList.Instance.AddProduct();
+
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: ShoppingCart/Edit/5
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        // POST: ShoppingCart/Edit/5
+        [HttpPost]
+        public ActionResult Edit(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add update logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: ShoppingCart/Delete/5
+        public ActionResult Delete(int id)
+        {
+            return View();
+        }
+
+        // POST: ShoppingCart/Delete/5
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add delete logic here
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+    }
+}
