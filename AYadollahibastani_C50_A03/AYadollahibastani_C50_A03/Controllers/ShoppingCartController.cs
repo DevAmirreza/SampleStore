@@ -40,7 +40,7 @@ namespace AYadollahibastani_C50_A03.Controllers
                 product.Price = Convert.ToDouble(collection.GetValue("Price").AttemptedValue); 
                 product.Quantity = Convert.ToInt16(collection.GetValue("Quantity").AttemptedValue);
                 product.ProductName = collection.GetValue("ProductName").AttemptedValue;
-                // TODO: Add insert logic here
+
                 Models.ShoppingCartList.Instance.AddProduct(product);
 
 

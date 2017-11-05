@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ShoppingCart>
+  <Product>
+    <id>1</id>
+    <ProductName>XBOX</ProductName>
+    <Price>22</Price>
+    <Quantity>2</Quantity>
+  </Product>
+  <Product>
+    <id>3</id>
+    <ProductName>Product B</ProductName>
+    <Price>130</Price>
+    <Quantity>1</Quantity>
+  </Product>
+  <Product>
+    <id>4</id>
+    <ProductName>DDDD</ProductName>
+    <Price>10000000</Price>
+    <Quantity>3</Quantity>
+  </Product>
+</ShoppingCart>

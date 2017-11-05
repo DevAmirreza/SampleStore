@@ -21,7 +21,7 @@ namespace AYadollahibastani_C50_A03.Models
         public enum category { Beverages, Bread }
         [Display(Name = "Category")]
         public category ProductCategory { get; set; }
-    
+
     }
 
     public class ShoppingCartList
@@ -30,7 +30,7 @@ namespace AYadollahibastani_C50_A03.Models
         // this is all just to fake out not having a database for now
         List<Product> cartList;
         private static ShoppingCartList instance = null;
-            
+
 
         private ShoppingCartList()
         {
@@ -44,7 +44,28 @@ namespace AYadollahibastani_C50_A03.Models
 
 
 
-        protected void LoadShoppingCart() {
+        static protected void LoadShoppingCart()
+        {
+            XElement xelement = XElement.Load(System.Web.HttpContext.Current.Server.MapPath("/App_Data/ShoppingCartList.xml"));
+            IEnumerable<XElement> products = xelement.Elements();
+
+
+            instance.cartList = new List<Product>();
+            // Read the entire XML
+            foreach (var productItem in products)
+            {
+                instance.cartList.Add(new Product()
+                {
+                    Id = Convert.ToInt16(productItem.Element("id").Value),
+                    ProductName = productItem.Element("ProductName").Value,
+                    Price = Convert.ToDouble(productItem.Element("Price").Value),
+                    Quantity = Convert.ToInt16(productItem.Element("Quantity").Value)
+
+
+
+                });
+            }
+
 
 
         }
@@ -53,27 +74,115 @@ namespace AYadollahibastani_C50_A03.Models
         protected void SaveShoppingCart()
         {
 
+            XDocument xdoc = XDocument.Load(System.Web.HttpContext.Current.Server.MapPath("/App_Data/ShoppingCartList.xml"));
+            XElement rootElement = xdoc.Root;
+            rootElement.RemoveAll();
+
+
+            foreach (var item in cartList)
+            {
+                XElement productElenent = new XElement("Product", new XElement("id", item.Id));
+                //bookElenent.Add(new XAttribute("category", book.category));
+                rootElement.Add(productElenent);
+                productElenent.Add(new XElement("ProductName", item.ProductName));
+                productElenent.Add(new XElement("Price", item.Price));
+                productElenent.Add(new XElement("Quantity", item.Quantity));
+
+            }
+
+
+            xdoc.Save(System.Web.HttpContext.Current.Server.MapPath("/App_Data/ShoppingCartList.xml"));
 
         }
 
 
-        public void AddProduct(Product product) {
+        public void AddProduct(Product product)
+        {
             cartList.Add(product);
+            SaveShoppingCart();
         }
 
-        public void RemoveProduct(int productId) {
+        public void RemoveProduct(int productId)
+        {
             var product = cartList.Where(s => s.Id == productId).FirstOrDefault();
 
             cartList.Remove(product);
+            SaveShoppingCart();
         }
 
-        public void UpdateProduct(Product product) {
-            int productIndex = cartList.FindIndex(c => c.Id== product.Id);
-            cartList[productIndex] = product; 
+        public void UpdateProduct(Product product)
+        {
+            int productIndex = cartList.FindIndex(c => c.Id == product.Id);
+            cartList[productIndex] = product;
+
+            SaveShoppingCart();
         }
 
         public static ShoppingCartList Instance // my singleton of a student list
         {
+            //get
+            //{
+
+            //    if (instance == null)
+            //    {
+            //        instance = new ShoppingCartList();
+            //        // populate with dummy data the first time this is referenced
+
+
+
+
+            //        //LoadShoppingCart();
+
+
+            //        try
+            //        {
+            //            XElement xelement = XElement.Load(System.Web.HttpContext.Current.Server.MapPath("/App_Data/ShoppingCartList.xml"));
+            //            IEnumerable<XElement> products = xelement.Elements();
+
+            //            instance.cartList = new List<Product>();
+            //            // Read the entire XML
+            //            foreach (var item in products)
+            //            {
+
+            //                instance.cartList.Add(new Product()
+            //                {
+            //                    Id = Convert.ToInt16(item.Element("Id").Value),
+            //                    ProductName = item.Element("ProductName").Value,
+            //                    Price = Convert.ToDouble(item.Element("Price").Value),
+            //                    Quantity = Convert.ToInt16(item.Element("Quantity").Value)
+
+            //                    //language = (Models.Book.lan)Enum.Parse(typeof(Models.Book.lan), book.Element("title").Attribute("lang").Value, true)
+
+
+            //                });
+            //            }
+
+            //        }
+            //        catch (Exception exp)
+            //        {
+            //            Exception ex = exp;
+
+            //            XElement root = new XElement("ShoppingCart", "");
+            //            root.Save(System.Web.HttpContext.Current.Server.MapPath("/App_Data/ShoppingCartList.xml"));
+
+            //            //file not found
+            //        }
+
+
+
+
+            //        //instance.cartList = new List<Product>{
+            //        //        new Product() { Id = 1, ProductName = "XBOX" , Quantity = 2 , Price = 22 ,ProductCategory = Product.category.Beverages  } ,
+            //        //         new Product() { Id = 2, ProductName = "XBOX" , Quantity = 1 , Price = 22 ,ProductCategory = Product.category.Beverages  } ,
+            //        //         new Product() { Id = 3, ProductName = "XBOX" , Quantity = 1 , Price = 22 ,ProductCategory = Product.category.Beverages  }
+            //        //    };
+            //        // Get the students from the database in the real application 
+
+            //    } // end if first time
+
+            //    return instance;
+            //}
+
             get
             {
 
@@ -81,63 +190,13 @@ namespace AYadollahibastani_C50_A03.Models
                 {
                     instance = new ShoppingCartList();
                     // populate with dummy data the first time this is referenced
-                    XElement xelement = null;
 
-                    try
-                    {
-                         xelement = XElement.Load(System.Web.HttpContext.Current.Server.MapPath("/App_Data/ShoppingCartList.xml"));
-                    }
-                    catch {
-
-                       //file not found
-                    }
-
-
-                    try
-                    {
-                        IEnumerable<XElement> CartList = xelement.Elements();
-
-                        instance.cartList = new List<Product>();
-                        // Read the entire XML
-                        foreach (var Product in CartList)
-                        {
-                            instance.cartList.Add(new Product()
-                            {
-                                //Id = 1
-                                //author = book.Element("author").Value,
-                                //title = book.Element("title").Value,
-                                //price = Convert.ToDecimal(book.Element("price").Value),
-                                //year = Convert.ToInt16(book.Element("year").Value),
-                                //category = book.Attribute("category").Value,
-                                //language = (Models.Book.lan)Enum.Parse(typeof(Models.Book.lan), book.Element("title").Attribute("lang").Value, true)
-
-
-                            });
-                        }
-                    }
-                    catch {
-                        //Null Exception
-                    }
-
-         
-                    
-                      
-                
-                
-
-                    instance.cartList = new List<Product>{
-                            new Product() { Id = 1, ProductName = "XBOX" , Quantity = 2 , Price = 22 ,ProductCategory = Product.category.Beverages  } ,
-                             new Product() { Id = 2, ProductName = "XBOX" , Quantity = 1 , Price = 22 ,ProductCategory = Product.category.Beverages  } ,
-                             new Product() { Id = 3, ProductName = "XBOX" , Quantity = 1 , Price = 22 ,ProductCategory = Product.category.Beverages  }
-                        };
-                    // Get the students from the database in the real application 
+                    LoadShoppingCart();
 
                 } // end if first time
 
                 return instance;
             }
-
-
 
 
         }

@@ -135,3 +135,4 @@ C:\Users\Amirreza\Google Drive\College\Semester 5\SampleStore\AYadollahibastani_
 C:\Users\Amirreza\Google Drive\College\Semester 5\SampleStore\AYadollahibastani_C50_A03\AYadollahibastani_C50_A03\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Amirreza\Google Drive\College\Semester 5\SampleStore\AYadollahibastani_C50_A03\AYadollahibastani_C50_A03\obj\Debug\AYadollahibastani_C50_A03.dll
 C:\Users\Amirreza\Google Drive\College\Semester 5\SampleStore\AYadollahibastani_C50_A03\AYadollahibastani_C50_A03\obj\Debug\AYadollahibastani_C50_A03.pdb
+C:\Users\Amirreza\Google Drive\College\Semester 5\SampleStore\AYadollahibastani_C50_A03\AYadollahibastani_C50_A03\obj\Debug\AYadollahibastani_C50_A03.csprojResolveAssemblyReference.cache
