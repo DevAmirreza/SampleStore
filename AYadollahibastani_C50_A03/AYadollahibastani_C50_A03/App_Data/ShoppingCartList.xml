@@ -15,7 +15,13 @@
   <Product>
     <id>4</id>
     <ProductName>DDDD</ProductName>
-    <Price>10000000</Price>
+    <Price>200</Price>
     <Quantity>3</Quantity>
+  </Product>
+  <Product>
+    <id>5</id>
+    <ProductName>dsfsdf</ProductName>
+    <Price>3</Price>
+    <Quantity>2</Quantity>
   </Product>
 </ShoppingCart>

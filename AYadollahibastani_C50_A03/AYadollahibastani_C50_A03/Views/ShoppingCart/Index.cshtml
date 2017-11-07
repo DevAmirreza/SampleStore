@@ -7,6 +7,8 @@
 
 <h2>Index</h2>
 
+<div class="btnCreate" >ok</div>
+
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -38,9 +40,15 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+            @*@Html.Action("Delete" , new { id = item.Id})*@
+            @Html.Hidden("DeleteId" , item.Id)
+            <button class="btn btn-danger btnDelete" value=@Html.Raw(item.Id )>Delete</button>
         </td>
     </tr>
 }
 
 </table>
+
+
+

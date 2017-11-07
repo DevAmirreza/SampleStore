@@ -1,9 +1,11 @@
-﻿using System;
+﻿using AYadollahibastani_C50_A03.Models.Validations;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Xml.Linq;
+using System.Xml.Schema;
 
 namespace AYadollahibastani_C50_A03.Models
 {
@@ -14,6 +16,8 @@ namespace AYadollahibastani_C50_A03.Models
         [Display(Name = "Quantity")]
         public int Quantity { get; set; }
         [Display(Name = "Product Name")]
+        [ValidateProductName(ErrorMessage = "Your Product Name is Already taken , please choose another one ")]
+        [Required]
         public String ProductName { get; set; }
         [Display(Name = "Price")]
         public double Price { get; set; }
@@ -96,6 +100,26 @@ namespace AYadollahibastani_C50_A03.Models
         }
 
 
+
+        public static bool IsValidXml(string xmlFilePath, string xsdFilePath, XNamespace namespaceName)
+        {
+            var xdoc = XDocument.Load(System.Web.HttpContext.Current.Server.MapPath("/App_Data/ShoppingCartList.xml"));
+            var schemas = new XmlSchemaSet();
+            schemas.Add(namespaceName.ToString(), xsdFilePath);
+
+            try
+            {
+                xdoc.Validate(schemas, null);
+            }
+            catch (XmlSchemaValidationException)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+
         public void AddProduct(Product product)
         {
             cartList.Add(product);
@@ -117,6 +141,17 @@ namespace AYadollahibastani_C50_A03.Models
 
             SaveShoppingCart();
         }
+
+        public Boolean IsDuplicate(String productName) {
+            var product = cartList.Where(s => s.ProductName.Trim().Equals(productName.Trim())).FirstOrDefault();
+
+            if (product != null)
+                return true;
+
+            return false; 
+
+        }
+
 
         public static ShoppingCartList Instance // my singleton of a student list
         {

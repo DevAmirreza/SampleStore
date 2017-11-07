@@ -89,7 +89,8 @@ namespace AYadollahibastani_C50_A03.Controllers
         {
             var product = Models.ShoppingCartList.Instance.GetList().Where(s => s.Id == id).FirstOrDefault();
 
-            return View(product);
+            //return View(product);
+            return PartialView("_Delete");    
         }
 
         // POST: ShoppingCart/Delete/5
@@ -106,5 +107,35 @@ namespace AYadollahibastani_C50_A03.Controllers
                 return View();
             }
         }
+
+
+
+        #region Custom ActionResults
+
+        [HttpPost]
+        public ActionResult IsDuplicate(String name)
+        {
+           
+                if(Models.ShoppingCartList.Instance.IsDuplicate(name)) 
+                    return Json(true, JsonRequestBehavior.AllowGet);
+
+                return Json(false, JsonRequestBehavior.AllowGet);
+            
+        }
+
+        public ActionResult CreateButton() {
+
+            return PartialView("CreateProduct");
+        }
+
+        public ActionResult ProfileJson() {
+            return Json(Models.ShoppingCartList.Instance.GetList(), JsonRequestBehavior.AllowGet); 
+        }
+
+
+        #endregion
+
+
+
     }
 }
