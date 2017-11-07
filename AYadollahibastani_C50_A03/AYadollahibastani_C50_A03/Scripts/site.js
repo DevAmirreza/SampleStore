@@ -31,10 +31,31 @@
 
 
 
-//$(".btnCreate").load("/ShoppingCart/CreateButton");
-$(".btnDelete").on("click", ()=> {
-    console.log($(this).val());
-    //$.post("/ShoppingCart/Delete/" + $(this).val() ,(data,status)=>{
-    //    console.log(data);
-    //});
+$(".btnCreate").load("/ShoppingCart/CreateButton");
+
+$(".btnDelete").on("click",  $(".btnDelete") , (el)=> {
+    $.get("/ShoppingCart/Delete/" + $(el.target).val(), (data, status) => {
+        $("#deleteConfirmation").html(data);
+    });
+});
+
+
+
+$('#popoverData').popover(() => {});
+
+$("#popoverData").on("mouseover", () => {
+
+    $.post("/ShoppingCart/ProfileJson/", (data, status) => {
+        let info = "";
+        for (let i = 0 ; i < data.length ; i++) {
+            info += data[i].Quantity + " -  " + data[i].ProductName; 
+        }
+        
+        $("#popoverData").attr("data-content", info);
+
+    });
+
+  
+
+
 });

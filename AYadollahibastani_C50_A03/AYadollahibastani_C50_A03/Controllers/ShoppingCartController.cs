@@ -128,8 +128,9 @@ namespace AYadollahibastani_C50_A03.Controllers
             return PartialView("CreateProduct");
         }
 
+        [HttpPost]
         public ActionResult ProfileJson() {
-            return Json(Models.ShoppingCartList.Instance.GetList(), JsonRequestBehavior.AllowGet); 
+            return Json(Models.ShoppingCartList.Instance.GetList()); 
         }
 
 

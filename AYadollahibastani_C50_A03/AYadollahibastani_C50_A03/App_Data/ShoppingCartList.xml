@@ -1,27 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ShoppingCart>
   <Product>
-    <id>1</id>
-    <ProductName>XBOX</ProductName>
-    <Price>22</Price>
-    <Quantity>2</Quantity>
-  </Product>
-  <Product>
-    <id>3</id>
-    <ProductName>Product B</ProductName>
-    <Price>130</Price>
+    <id>4</id>
+    <ProductName>Blackberry Z30</ProductName>
+    <Price>400</Price>
     <Quantity>1</Quantity>
   </Product>
   <Product>
-    <id>4</id>
-    <ProductName>DDDD</ProductName>
+    <id>3</id>
+    <ProductName>Max</ProductName>
     <Price>200</Price>
-    <Quantity>3</Quantity>
-  </Product>
-  <Product>
-    <id>5</id>
-    <ProductName>dsfsdf</ProductName>
-    <Price>3</Price>
-    <Quantity>2</Quantity>
+    <Quantity>1</Quantity>
   </Product>
 </ShoppingCart>
