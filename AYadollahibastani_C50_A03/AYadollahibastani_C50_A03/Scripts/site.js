@@ -51,7 +51,7 @@ $("#popoverData").on("mouseover", () => {
             info += data[i].Quantity + " -  " + data[i].ProductName; 
         }
         
-        $("#popoverData").attr("data-content", info);
+       $("#popoverData").attr("data-content", info);
 
     });
 
