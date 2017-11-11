@@ -86,7 +86,7 @@ namespace AYadollahibastani_C50_A03.Models
             foreach (var item in cartList)
             {
                 XElement productElenent = new XElement("Product", new XElement("id", item.Id));
-                //bookElenent.Add(new XAttribute("category", book.category));
+               // productElenent.Add(new XAttribute("category", item.ProductCategory));
                 rootElement.Add(productElenent);
                 productElenent.Add(new XElement("ProductName", item.ProductName));
                 productElenent.Add(new XElement("Price", item.Price));
@@ -99,7 +99,7 @@ namespace AYadollahibastani_C50_A03.Models
 
         }
 
-
+        
 
         public static bool IsValidXml(string xmlFilePath, string xsdFilePath, XNamespace namespaceName)
         {
