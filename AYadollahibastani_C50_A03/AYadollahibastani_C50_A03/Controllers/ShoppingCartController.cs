@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using static AYadollahibastani_C50_A03.Models.Product;
 
 namespace AYadollahibastani_C50_A03.Controllers
 {
@@ -40,6 +41,7 @@ namespace AYadollahibastani_C50_A03.Controllers
                 product.Price = Convert.ToDouble(collection.GetValue("Price").AttemptedValue); 
                 product.Quantity = Convert.ToInt16(collection.GetValue("Quantity").AttemptedValue);
                 product.ProductName = collection.GetValue("ProductName").AttemptedValue;
+                product.ProductCategory = (category)Enum.Parse(typeof(category), collection.GetValue("ProductCategory").AttemptedValue);
 
                 Models.ShoppingCartList.Instance.AddProduct(product);
 
@@ -72,7 +74,8 @@ namespace AYadollahibastani_C50_A03.Controllers
                 product.Price= Convert.ToDouble(collection.GetValue("Price").AttemptedValue);
                 product.ProductName  = collection.GetValue("ProductName").AttemptedValue;
                 product.Quantity = Convert.ToInt16(collection.GetValue("Quantity").AttemptedValue);
-             
+                product.ProductCategory = (category)Enum.Parse(typeof(category), collection.GetValue("ProductCategory").AttemptedValue);
+
 
                 Models.ShoppingCartList.Instance.UpdateProduct(product);
                 return RedirectToAction("Index");

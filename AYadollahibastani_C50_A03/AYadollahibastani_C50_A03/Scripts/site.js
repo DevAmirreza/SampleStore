@@ -44,11 +44,10 @@ $(".btnDelete").on("click",  $(".btnDelete") , (el)=> {
 $('#popoverData').popover(() => {});
 
 $("#popoverData").on("mouseover", () => {
-
     $.post("/ShoppingCart/ProfileJson/", (data, status) => {
         let info = "";
         for (let i = 0 ; i < data.length ; i++) {
-            info += data[i].Quantity + " -  " + data[i].ProductName; 
+            info += "<div class='product'><h4><span class='productQuan'>" + data[i].Quantity + "</span> <span class='productName'>" + data[i].ProductName + "</span></h4></div>  ";
         }
         
        $("#popoverData").attr("data-content", info);

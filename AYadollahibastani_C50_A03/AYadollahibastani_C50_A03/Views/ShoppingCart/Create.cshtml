@@ -1,25 +1,19 @@
 ﻿@model AYadollahibastani_C50_A03.Models.Product
-
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+    <a id="popoverData"  class="cart" href="#" data-content="<img class='loading' src=@Url.Content("~/loading.gif") />" rel="popover" data-html="true" data-placement="bottom" data-original-title="Your Cart" data-trigger="hover">
+    <img class="cartImg" src=@Url.Content("~/cart.png")  />
+    </a>
+
 <h2>Create</h2>
 
-<div class="cart">
-
-    <a  id="popoverData" class="btn" href="#" data-content="<img class='loading' src=@Url.Content("~/loading.gif") />" rel="popover" data-html="true"  data-placement="bottom" data-original-title="Title" data-trigger="hover">
-        [cart]
-        </a>
-   
-
-</div>
-
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Product</h4>
         <hr />
@@ -33,13 +27,19 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.ProductCategory, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.ProductCategory, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ProductCategory, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
             @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control unique" } })
                 @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -47,7 +47,6 @@
                 @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-default" />
@@ -55,11 +54,9 @@
         </div>
     </div>
 }
-
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

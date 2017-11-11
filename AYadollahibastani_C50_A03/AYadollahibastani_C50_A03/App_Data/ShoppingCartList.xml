@@ -1,15 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ShoppingCart>
-  <Product category="Beverages">
-    <id>2</id>
-    <ProductName>xbox</ProductName>
-    <Price>87</Price>
-    <Quantity>554</Quantity>
-  </Product>
-  <Product category="Beverages">
+<ShoppingList>
+  <ShoppingEntry category="Meat">
     <id>3</id>
-    <ProductName>sd</ProductName>
-    <Price>23</Price>
-    <Quantity>2</Quantity>
-  </Product>
-</ShoppingCart>
+    <Product>
+      <Name>Chicken</Name>
+      <Price>10</Price>
+    </Product>
+    <Quantity>1</Quantity>
+  </ShoppingEntry>
+  <ShoppingEntry category="Other">
+    <id>4</id>
+    <Product>
+      <Name>moviw</Name>
+      <Price>22</Price>
+    </Product>
+    <Quantity>1</Quantity>
+  </ShoppingEntry>
+</ShoppingList>

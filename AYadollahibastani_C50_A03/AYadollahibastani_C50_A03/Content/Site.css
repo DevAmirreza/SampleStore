@@ -1,8 +1,12 @@
-﻿body {
+﻿@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:300,400');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
 }
-    
+
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
@@ -25,20 +29,137 @@ textarea {
 
 
 .btnCreate {
-    border: solid 1px red;
     float: right;
     margin-top: 15px;
     margin-right: 20px;
-    bottom: 20px;
-    right: 0 ;
+    bottom: 0px;
+    right: 0;
     position: fixed;
-    padding:1% ;
+    padding: 1%;
+}
+
+.add {
+    width: 60px;
+    height: 60px;
+}
+
+.create {
+    font-family: 'Josefin Sans', sans-serif !important;
+    padding-top: 15px;
 }
 
 
-
 .loading {
-    width:50px ;
-    height:50px ; 
+    width: 50px;
+    height: 50px;
+}
 
+.navbar {
+    padding-top: 1.5%;
+    background: #ECF0F1;
+    border-bottom: solid 1px silver;
+    width: 85%;
+    margin: 0 auto 0 auto;
+}
+
+.body-content {
+    margin-top: 40px;
+    width: 85%;
+}
+
+ul.links {
+    margin: 0 auto 0 auto;
+}
+
+.navbar-inverse .navbar-nav > li > a:hover {
+    border-bottom: solid 1px black;
+    color: black;
+}
+
+.centerit {
+    margin: 0 auto 0 auto;
+    text-align: center;
+    padding: 0.5%;
+}
+
+@media only screen and (max-width: 500px) {
+    .body-content {
+        width: 100%;
+    }
+}
+
+
+.table th {
+    text-align: center;
+    border: none !important;
+    font-size:120%
+}
+
+td {
+    border: none !important;
+}
+
+h2 {
+    padding-bottom: 1%;
+    margin-bottom: 15px;
+    border-bottom: solid 1px black;
+}
+
+/* unvisited link */
+a:link {
+    color: black;
+}
+
+/* visited link */
+a:visited {
+    color: black;
+}
+
+/* mouse over link */
+a:hover {
+    color: black;
+    border-bottom: none !important;
+}
+
+/* selected link */
+a:active {
+    color: black;
+}
+
+.cart {
+    width: 20%;
+    float: right;
+    text-align: right;
+}
+
+.cartImg {
+    width: 50px;
+    height: 50px;
+}
+
+
+.product {
+    border-bottom: solid 1px black;
+    padding: 1%;
+}
+
+.productName {
+    text-align: right !important;
+    float: right;
+    padding: 1%;
+}
+
+.productQuan {
+    text-align: left !important;
+}
+
+.popover {
+    min-width: 200px;
+    font-family: 'Roboto', sans-serif;
+
+}
+
+
+.form-control {
+width:auto !important; 
 }

@@ -10,12 +10,12 @@ namespace AYadollahibastani_C50_A03.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "ShoppingCart");
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "";
 
             return View();
         }

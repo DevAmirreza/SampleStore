@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:element name="ShoppingList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="ShoppingEntry" minOccurs="0" maxOccurs="unbounded">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="id" type="xs:int" ></xs:element>
+              <xs:element name="Product">
+                <xs:complexType>
+
+                  <xs:sequence>
+                    <xs:element name="Name"  minOccurs="1"  >
+                      <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                          <xs:maxLength value="20" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                    <xs:element name="Price"  minOccurs="1" >
+                      <xs:simpleType>
+                        <xs:restriction base="xs:decimal">
+                          <xs:fractionDigits value="2" />
+                        </xs:restriction>
+                      </xs:simpleType>
+                    </xs:element>
+                  </xs:sequence>
+
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="Quantity" type="xs:nonNegativeInteger"></xs:element>
+            </xs:sequence>
+            <xs:attribute name="category" use="required">
+
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="Other" />
+                  <xs:enumeration value="Beverages" />
+                  <xs:enumeration value="Bakery" />
+                  <xs:enumeration value="Canned" />
+                  <xs:enumeration value="Dairy" />
+                  <xs:enumeration value="Dry" />
+                  <xs:enumeration value="Frozen" />
+                  <xs:enumeration value="Meat" />
+                  <xs:enumeration value="Produce" />
+                  <xs:enumeration value="Cleaners" />
+                  <xs:enumeration value="Paper" />
+                  <xs:enumeration value="Personal" />
+
+                </xs:restriction>
+              </xs:simpleType>
+
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
+

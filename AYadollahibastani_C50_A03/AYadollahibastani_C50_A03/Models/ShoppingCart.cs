@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Xml.Linq;
 using System.Xml.Schema;
+using static AYadollahibastani_C50_A03.Models.Product;
 
 namespace AYadollahibastani_C50_A03.Models
 {
@@ -22,7 +23,7 @@ namespace AYadollahibastani_C50_A03.Models
         [Display(Name = "Price")]
         public double Price { get; set; }
 
-        public enum category { Beverages, Bread }
+        public enum category { Other, Beverages, Bakery, Canned, Dairy, Dry, Frozen, Meat, Produce, Cleaners, Paper, Personal }
         [Display(Name = "Category")]
         public category ProductCategory { get; set; }
 
@@ -55,19 +56,26 @@ namespace AYadollahibastani_C50_A03.Models
 
 
             instance.cartList = new List<Product>();
-            // Read the entire XML
-            foreach (var productItem in products)
+            if (IsValidXml())
             {
-                instance.cartList.Add(new Product()
+                // Read the entire XML
+                foreach (var productItem in products)
                 {
-                    Id = Convert.ToInt16(productItem.Element("id").Value),
-                    ProductName = productItem.Element("ProductName").Value,
-                    Price = Convert.ToDouble(productItem.Element("Price").Value),
-                    Quantity = Convert.ToInt16(productItem.Element("Quantity").Value)
+                    instance.cartList.Add(new Product()
+                    {
+                        Id = Convert.ToInt16(productItem.Element("id").Value),
+                        ProductName = productItem.Element("Product").Element("Name").Value,
+                        Price = Convert.ToDouble(productItem.Element("Product").Element("Price").Value),
+                        Quantity = Convert.ToInt16(productItem.Element("Quantity").Value),
+                        ProductCategory = (category)Enum.Parse(typeof(category), productItem.Attribute("category").Value)
 
-
-
-                });
+                    });
+                }
+            }
+            else
+            {
+                //error message goes here
+                instance.cartList.Add(new Product());
             }
 
 
@@ -85,27 +93,39 @@ namespace AYadollahibastani_C50_A03.Models
 
             foreach (var item in cartList)
             {
-                XElement productElenent = new XElement("Product", new XElement("id", item.Id));
-               // productElenent.Add(new XAttribute("category", item.ProductCategory));
-                rootElement.Add(productElenent);
-                productElenent.Add(new XElement("ProductName", item.ProductName));
-                productElenent.Add(new XElement("Price", item.Price));
-                productElenent.Add(new XElement("Quantity", item.Quantity));
+                XElement ShoppingEntry = new XElement("ShoppingEntry", new XElement("id", item.Id));
+                ShoppingEntry.Add(new XAttribute("category", item.ProductCategory));
+
+                XElement productElement = new XElement("Product");
+                XElement nameElement = new XElement("Name", item.ProductName);
+                XElement priceElement = new XElement("Price", item.Price);
+
+                productElement.Add(nameElement);
+                productElement.Add(priceElement);
+
+                ShoppingEntry.Add(productElement);
+                ShoppingEntry.Add(new XElement("Quantity", item.Quantity));
+                rootElement.Add(ShoppingEntry);
 
             }
 
-
-            xdoc.Save(System.Web.HttpContext.Current.Server.MapPath("/App_Data/ShoppingCartList.xml"));
-
+            if (IsValidXml())
+            {
+                xdoc.Save(System.Web.HttpContext.Current.Server.MapPath("/App_Data/ShoppingCartList.xml"));
+            }
+            else
+            {
+                //hererere
+            }
         }
 
-        
 
-        public static bool IsValidXml(string xmlFilePath, string xsdFilePath, XNamespace namespaceName)
+
+        public static bool IsValidXml()
         {
             var xdoc = XDocument.Load(System.Web.HttpContext.Current.Server.MapPath("/App_Data/ShoppingCartList.xml"));
             var schemas = new XmlSchemaSet();
-            schemas.Add(namespaceName.ToString(), xsdFilePath);
+            schemas.Add(null, System.Web.HttpContext.Current.Server.MapPath("/Schema/ShoppingList.xsd"));
 
             try
             {
@@ -142,13 +162,14 @@ namespace AYadollahibastani_C50_A03.Models
             SaveShoppingCart();
         }
 
-        public Boolean IsDuplicate(String productName) {
+        public Boolean IsDuplicate(String productName)
+        {
             var product = cartList.Where(s => s.ProductName.Trim().Equals(productName.Trim())).FirstOrDefault();
 
             if (product != null)
                 return true;
 
-            return false; 
+            return false;
 
         }
 
