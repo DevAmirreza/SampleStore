@@ -5,6 +5,7 @@ body {
     padding-top: 50px;
     padding-bottom: 20px;
     font-family: 'Roboto', sans-serif;
+    display:none ;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -92,7 +93,7 @@ ul.links {
 .table th {
     text-align: center;
     border: none !important;
-    font-size:120%
+    font-size: 120%;
 }
 
 td {
@@ -156,10 +157,29 @@ a:active {
 .popover {
     min-width: 200px;
     font-family: 'Roboto', sans-serif;
-
 }
 
 
 .form-control {
-width:auto !important; 
+    width: auto !important;
+}
+
+dd {
+    margin: 0 auto 0 auto;
+    text-align: left;
+}
+
+dl {
+    width: 40%;
+    margin: 0 auto 0 auto;
+    font-size:120% ; 
+}
+
+.alert {
+font-size:120% ;
+padding:5px;
+}
+
+#deleteConfirmation {
+display:none ;
 }

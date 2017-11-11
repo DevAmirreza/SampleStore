@@ -8,11 +8,27 @@
     </Product>
     <Quantity>1</Quantity>
   </ShoppingEntry>
-  <ShoppingEntry category="Other">
+  <ShoppingEntry category="Dairy">
     <id>4</id>
     <Product>
-      <Name>moviw</Name>
-      <Price>22</Price>
+      <Name>Yogurt</Name>
+      <Price>6</Price>
+    </Product>
+    <Quantity>4</Quantity>
+  </ShoppingEntry>
+  <ShoppingEntry category="Dairy">
+    <id>4</id>
+    <Product>
+      <Name>Milk</Name>
+      <Price>2.5</Price>
+    </Product>
+    <Quantity>1</Quantity>
+  </ShoppingEntry>
+  <ShoppingEntry category="Other">
+    <id>5</id>
+    <Product>
+      <Name>Banana</Name>
+      <Price>0.99</Price>
     </Product>
     <Quantity>1</Quantity>
   </ShoppingEntry>
