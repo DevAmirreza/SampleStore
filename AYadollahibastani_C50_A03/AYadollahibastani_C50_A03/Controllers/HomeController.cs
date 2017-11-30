@@ -10,7 +10,7 @@ namespace AYadollahibastani_C50_A03.Controllers
     {
         public ActionResult Index()
         {
-            return RedirectToAction("Index", "ShoppingCart");
+            return View();
         }
 
         public ActionResult About()

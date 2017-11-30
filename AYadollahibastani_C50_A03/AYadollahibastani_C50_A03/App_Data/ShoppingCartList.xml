@@ -1,21 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ShoppingList>
-  <ShoppingEntry category="Meat">
-    <id>3</id>
-    <Product>
-      <Name>Chicken</Name>
-      <Price>10</Price>
-    </Product>
-    <Quantity>1</Quantity>
-  </ShoppingEntry>
-  <ShoppingEntry category="Dairy">
-    <id>4</id>
-    <Product>
-      <Name>Yogurt</Name>
-      <Price>6</Price>
-    </Product>
-    <Quantity>4</Quantity>
-  </ShoppingEntry>
   <ShoppingEntry category="Dairy">
     <id>4</id>
     <Product>
@@ -24,12 +8,12 @@
     </Product>
     <Quantity>1</Quantity>
   </ShoppingEntry>
-  <ShoppingEntry category="Other">
-    <id>5</id>
+  <ShoppingEntry category="Dry">
+    <id>4</id>
     <Product>
-      <Name>Banana</Name>
-      <Price>0.99</Price>
+      <Name>Pants</Name>
+      <Price>200</Price>
     </Product>
-    <Quantity>1</Quantity>
+    <Quantity>2</Quantity>
   </ShoppingEntry>
 </ShoppingList>
